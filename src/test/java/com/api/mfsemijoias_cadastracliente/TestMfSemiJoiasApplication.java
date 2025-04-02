@@ -1,4 +1,4 @@
-package com.api.mf_semi_joias;
+package com.api.mfsemijoias_cadastracliente;
 
 import org.springframework.boot.SpringApplication;
 

@@ -11,7 +11,7 @@
 	<groupId>com.api</groupId>
 	<artifactId>mf-semi-joias</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mf-semi-joias</name>
+	<name>mfsemijoias-cadastracliente</name>
 	<description>Aplicação para E-commerce, utilizando microserviços</description>
 	<url/>
 	<licenses>

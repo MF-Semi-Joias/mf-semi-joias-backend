@@ -1,4 +1,4 @@
-package com.api.mf_semi_joias.adapters.out.repository;
+package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
 public class ClienteRepository {
     private String nome;

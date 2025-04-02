@@ -1,4 +1,4 @@
-package com.api.mf_semi_joias.domain.model;
+package com.api.mfsemijoias_cadastracliente.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
