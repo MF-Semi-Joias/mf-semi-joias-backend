@@ -1,21 +1,15 @@
 package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
+import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+
 public interface ClienteRepository  {
 
-    ClienteEntity save(ClienteEntity clienteEntity);
-
-    ClienteEntity findById(Long id);
-
-    ClienteEntity findByEmail(String email);
-
-    ClienteEntity findByUsuario(String usuario);
-
-    ClienteEntity findByCpf(String cpf);
-
-    ClienteEntity findByNome(String nome);
-
-    ClienteEntity deleteById(Long id);
-
-    ClienteEntity update(ClienteEntity clienteEntity);
+    Cliente save(Cliente cliente);
+    Cliente findById(Long id);
+    Cliente findByEmail(String email);
+    Cliente findByCpf(String cpf);
+    Cliente findByNome(String nome);
+    Cliente deleteById(Long id);
+    Cliente update(Cliente cliente);
 
 }

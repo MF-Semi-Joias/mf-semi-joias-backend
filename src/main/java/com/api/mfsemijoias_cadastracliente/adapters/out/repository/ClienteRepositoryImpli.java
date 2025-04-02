@@ -1,46 +1,65 @@
 package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.api.mfsemijoias_cadastracliente.adapters.in.mappers.ClienteMapper;
+import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+import lombok.Data;
 import org.springframework.stereotype.Repository;
 
+@Data
 @Repository
 public class ClienteRepositoryImpli implements ClienteRepository {
+
+    private final DynamoDBMapper dynamoDBMapper;
+    private final ClienteMapper clienteMapper;
+    private ClienteEntity clienteEntity;
+
+
     @Override
-    public ClienteEntity save(ClienteEntity clienteEntity) {
-        return save(clienteEntity);
+    public Cliente save(Cliente cliente) {
+        clienteEntity = clienteMapper.toEntity(cliente);
+        dynamoDBMapper.save(clienteEntity);
+        return cliente;
     }
 
     @Override
-    public ClienteEntity findById(Long id) {
-        return findById(id);
+    public Cliente findById(Long id) {
+         clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
+        return clienteMapper.toDomain(clienteEntity);
+    }
+
+
+    @Override
+    public Cliente findByEmail(String email) {
+        clienteEntity = dynamoDBMapper.load(ClienteEntity.class, email);
+        return clienteMapper.toDomain(clienteEntity);
     }
 
     @Override
-    public ClienteEntity findByEmail(String email) {
-        return findByEmail(email);
+    public Cliente findByCpf(String cpf) {
+        clienteEntity = dynamoDBMapper.load(ClienteEntity.class, cpf);
+        return clienteMapper.toDomain(clienteEntity);
     }
 
     @Override
-    public ClienteEntity findByUsuario(String usuario) {
-        return findByUsuario(usuario);
+    public Cliente findByNome(String nome) {
+        clienteEntity = dynamoDBMapper.load(ClienteEntity.class, nome);
+        return clienteMapper.toDomain(clienteEntity);
+        }
+
+    @Override
+    public Cliente deleteById(Long id) {
+        clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
+        dynamoDBMapper.delete(clienteEntity);
+        return clienteMapper.toDomain(clienteEntity);
+
     }
 
     @Override
-    public ClienteEntity findByCpf(String cpf) {
-        return findByCpf(cpf);
+    public Cliente update(Cliente cliente) {
+        clienteEntity = clienteMapper.toEntity(cliente);
+        dynamoDBMapper.save(cliente);
+        return cliente;
     }
 
-    @Override
-    public ClienteEntity findByNome(String nome) {
-        return findByNome(nome);
-    }
-
-    @Override
-    public ClienteEntity deleteById(Long id) {
-        return deleteById(id);
-    }
-
-    @Override
-    public ClienteEntity update(ClienteEntity clienteEntity) {
-        return update(clienteEntity);
-    }
 }
