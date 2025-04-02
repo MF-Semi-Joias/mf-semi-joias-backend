@@ -7,6 +7,8 @@ Aqui está um exemplo de `README.md` para o seu projeto:
 
 Este projeto consiste em uma arquitetura de microserviços utilizando Java 17, Spring Boot 3, MongoDB, Kafka, SNS/SQS, Terraform e AWS (Local Stack). A arquitetura hexagonal foi adotada para garantir a separação de responsabilidades e facilitar a manutenção e evolução do sistema.
 
+![Desenho da Solução](src/main/resources/desenho/MFsemijoias.png)
+
 ## Estrutura do Projeto
 
 ```plaintext
