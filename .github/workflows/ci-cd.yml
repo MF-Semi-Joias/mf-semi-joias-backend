@@ -54,10 +54,10 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Merge current branch into develop
+      - name: Merge current branch into developer
         run: |
-          git checkout develop
+          git checkout developer
           git merge ${{ github.ref_name }}
-          git push origin develop
+          git push origin developer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
