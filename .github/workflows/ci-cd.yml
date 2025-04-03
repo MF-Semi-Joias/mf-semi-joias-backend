@@ -35,7 +35,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Automated PR from feature branch"
-          branch: ${{ github.ref }}
+          branch: ${{ github.head_ref }}
           base: develop
           title: "Automated PR from feature branch"
           body: "This is an automated pull request created by GitHub Actions."
