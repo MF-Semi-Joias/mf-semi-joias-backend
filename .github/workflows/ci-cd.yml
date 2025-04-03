@@ -54,9 +54,17 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
+      - name: Ensure develop branch exists
+        run: |
+          if ! git show-ref --verify --quiet refs/heads/develop; then
+            git checkout -b develop
+            git push origin develop
+          else
+            git checkout develop
+          fi
+
       - name: Merge current branch into develop
         run: |
-          git checkout develop
           git merge ${{ github.ref_name }}
           git push origin develop
         env:
