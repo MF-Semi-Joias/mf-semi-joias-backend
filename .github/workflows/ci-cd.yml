@@ -24,4 +24,4 @@ jobs:
       - name: Run tests
         run: mvn test
       - name: Deploy
-        run: mvn spring-boot:run
+        run: echo "Deploying to production server..."
