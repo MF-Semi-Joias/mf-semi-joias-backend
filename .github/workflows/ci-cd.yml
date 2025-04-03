@@ -58,7 +58,7 @@ jobs:
         run: |
           if ! git show-ref --verify --quiet refs/heads/develop; then
             git checkout -b develop
-            git push origin develop
+            git push https://<samusfsp>:${{ secrets.ORG_PAT_TOKEN }}@github.com/MF-Semi-Joias/mf-semi-joias-backend.git develop
           else
             git checkout develop
           fi
@@ -66,6 +66,6 @@ jobs:
       - name: Merge current branch into develop
         run: |
           git merge ${{ github.ref_name }}
-          git push origin develop
+          git push https://<samusfsp>:${{ secrets.ORG_PAT_TOKEN }}@github.com/MF-Semi-Joias/mf-semi-joias-backend.git develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
