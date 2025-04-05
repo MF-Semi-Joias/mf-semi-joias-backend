@@ -39,6 +39,14 @@ jobs:
     - name: Run tests
       run: mvn test
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
     - name: Deploy application
       run: |
         # Adicione aqui os comandos para fazer o deploy da sua aplicação
