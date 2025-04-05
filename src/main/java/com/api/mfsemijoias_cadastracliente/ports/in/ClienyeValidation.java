@@ -14,5 +14,4 @@ public interface ClienyeValidation {
 
     boolean isValidUsername(String username);
 
-    boolean isValidAddress(String address);
 }
