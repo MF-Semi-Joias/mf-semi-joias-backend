@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-
 on:
   pull_request:
     branches:
@@ -39,6 +38,11 @@ jobs:
 
     - name: Run tests
       run: mvn test
+
+    - name: Deploy application
+      run: |
+        # Adicione aqui os comandos para fazer o deploy da sua aplicação
+        echo "Deploying application..."
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
