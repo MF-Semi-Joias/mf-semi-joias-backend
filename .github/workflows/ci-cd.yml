@@ -38,3 +38,13 @@ jobs:
 
     - name: Run tests
       run: mvn test
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: Atualização automática
+        branch: auto-pr-branch
+        title: 'Pull request automático'
+        body: 'Este pull request foi criado automaticamente pelo GitHub Actions.'
+        base: develop
