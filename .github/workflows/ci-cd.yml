@@ -52,6 +52,7 @@ jobs:
         echo "Deploying application..."
 
     - name: Create Pull Request
+      id: create_pr
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,3 +63,11 @@ jobs:
         base: develop
         branch-suffix: timestamp
         debug: true
+
+    - name: Validate Pull Request Creation
+      if: steps.create_pr.outputs.pull-request-url == ''
+      run: |
+        echo "Falha ao criar o Pull Request"
+        exit 1
+      else:
+        echo "Pull Request criado com sucesso: ${{ steps.create_pr.outputs.pull-request-url }}"
