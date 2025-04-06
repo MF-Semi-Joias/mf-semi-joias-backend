@@ -18,7 +18,6 @@ private static final Pattern USERNAME_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])
     public boolean isValidEmail(String email) {
         EMAIL_PATTERN.matcher(email).matches();
 
-
         return true;
     }
 
