@@ -1,5 +1,6 @@
 package com.api.mf_semi_joias;
 
+import com.api.mfsemijoias_cadastracliente.MfSemiJoiasApplication;
 import org.springframework.boot.SpringApplication;
 
 public class TestMfSemiJoiasApplication {
