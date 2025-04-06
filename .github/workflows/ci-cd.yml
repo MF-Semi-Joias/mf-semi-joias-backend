@@ -74,3 +74,10 @@ jobs:
       if: ${{ steps.create_pr.outputs.pull-request-url != '' }}
       run: |
         echo "Pull Request criado com sucesso: ${{ steps.create_pr.outputs.pull-request-url }}"
+
+    - name: Debugging Information
+      run: |
+        echo "Debugging Information"
+        git status
+        git log -1
+        ls -la
