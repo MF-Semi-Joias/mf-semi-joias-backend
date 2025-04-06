@@ -81,3 +81,4 @@ jobs:
         git status
         git log -1
         ls -la
+        cat .git/config
