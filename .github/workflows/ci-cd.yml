@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-
 on:
   pull_request:
     branches:
@@ -66,9 +65,12 @@ jobs:
         debug: true
 
     - name: Validate Pull Request Creation
-      if: steps.create_pr.outputs.pull-request-url == ''
+      if: ${{ steps.create_pr.outputs.pull-request-url == '' }}
       run: |
         echo "Falha ao criar o Pull Request"
         exit 1
-      else:
+
+    - name: Pull Request Created Successfully
+      if: ${{ steps.create_pr.outputs.pull-request-url != '' }}
+      run: |
         echo "Pull Request criado com sucesso: ${{ steps.create_pr.outputs.pull-request-url }}"
