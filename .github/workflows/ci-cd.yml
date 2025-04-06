@@ -67,7 +67,7 @@ jobs:
       id: check_commits
       run: |
         echo "Checking for new commits..."
-        new_commits=$(git rev-list --right-only --count develop...${{ github.ref }})
+        new_commits=$(git rev-list --right-only --count origin/develop...${{ github.ref }})
         echo "new_commits=$new_commits" >> $GITHUB_ENV
 
     - name: Debugging Information
