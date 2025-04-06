@@ -1,16 +1,3 @@
-name: CI/CD Pipeline
-
-on:
-  pull_request:
-    branches:
-      - develop
-  push:
-    branches:
-      - feature/*
-      - bugfix/*
-      - hotfix/*
-      - release/*
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,14 +47,14 @@ jobs:
         permission=$(echo $response | jq -r '.permission')
         echo "permission=$permission" >> $GITHUB_ENV
 
-    - name: Fetch develop branch
-      run: git fetch origin develop:develop
+    - name: Fetch all branches
+      run: git fetch --all
 
     - name: Check for New Commits
       id: check_commits
       run: |
         echo "Checking for new commits..."
-        new_commits=$(git rev-list --right-only --count origin/develop...${{ github.event.pull_request.head.ref }})
+        new_commits=$(git rev-list --right-only --count origin/develop...origin/feature/flavio)
         echo "new_commits=$new_commits" >> $GITHUB_ENV
 
     - name: Debugging Information
