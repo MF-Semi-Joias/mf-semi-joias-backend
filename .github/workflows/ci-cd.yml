@@ -58,18 +58,21 @@ jobs:
         response=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission)
         echo "Response: $response"
         permission=$(echo $response | jq -r '.permission')
-        echo "::set-output name=permission::$permission"
+        echo "permission=$permission" >> $GITHUB_ENV
+
+    - name: Fetch develop branch
+      run: git fetch origin develop:develop
 
     - name: Check for New Commits
       id: check_commits
       run: |
         echo "Checking for new commits..."
         new_commits=$(git rev-list --right-only --count develop...${{ github.ref }})
-        echo "::set-output name=new_commits::$new_commits"
+        echo "new_commits=$new_commits" >> $GITHUB_ENV
 
     - name: Create Pull Request
       id: create_pr
-      if: ${{ steps.validate_token.outputs.permission == 'write' || steps.validate_token.outputs.permission == 'admin' && steps.check_commits.outputs.new_commits != '0' }}
+      if: ${{ env.permission == 'write' || env.permission == 'admin' && env.new_commits != '0' }}
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
