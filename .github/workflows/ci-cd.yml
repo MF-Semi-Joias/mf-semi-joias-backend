@@ -72,7 +72,7 @@ jobs:
 
     - name: Create Pull Request
       id: create_pr
-      if: ${{ env.permission == 'write' || env.permission == 'admin' && env.new_commits != '0' }}
+      if: ${{ env.permission == 'write' || env.permission == 'admin' }} && ${{ env.new_commits != '0' }}
       uses: peter-evans/create-pull-request@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
