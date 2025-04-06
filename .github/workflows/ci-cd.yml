@@ -70,30 +70,6 @@ jobs:
         new_commits=$(git rev-list --right-only --count develop...${{ github.ref }})
         echo "new_commits=$new_commits" >> $GITHUB_ENV
 
-    - name: Create Pull Request
-      id: create_pr
-      if: ${{ env.permission == 'write' || env.permission == 'admin' }} && ${{ env.new_commits != '0' }}
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Atualização automática
-        branch: auto-pr-branch
-        title: 'Pull request automático'
-        body: 'Este pull request foi criado automaticamente pelo GitHub Actions.'
-        base: develop
-        branch-suffix: timestamp
-
-    - name: Validate Pull Request Creation
-      if: ${{ steps.create_pr.outputs.pull-request-url == '' }}
-      run: |
-        echo "Falha ao criar o Pull Request"
-        exit 1
-
-    - name: Pull Request Created Successfully
-      if: ${{ steps.create_pr.outputs.pull-request-url != '' }}
-      run: |
-        echo "Pull Request criado com sucesso: ${{ steps.create_pr.outputs.pull-request-url }}"
-
     - name: Debugging Information
       run: |
         echo "Debugging Information"
