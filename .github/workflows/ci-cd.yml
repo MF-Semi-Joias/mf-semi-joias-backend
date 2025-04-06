@@ -82,7 +82,6 @@ jobs:
         body: 'Este pull request foi criado automaticamente pelo GitHub Actions.'
         base: develop
         branch-suffix: timestamp
-        debug: true
 
     - name: Validate Pull Request Creation
       if: ${{ steps.create_pr.outputs.pull-request-url == '' }}
