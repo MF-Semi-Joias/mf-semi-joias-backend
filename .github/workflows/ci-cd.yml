@@ -55,7 +55,10 @@ jobs:
       id: validate_token
       run: |
         echo "Validating token permissions..."
-        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission
+        response=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/collaborators/${{ github.actor }}/permission)
+        echo "Response: $response"
+        permission=$(echo $response | jq -r '.permission')
+        echo "::set-output name=permission::$permission"
 
     - name: Create Pull Request
       id: create_pr
