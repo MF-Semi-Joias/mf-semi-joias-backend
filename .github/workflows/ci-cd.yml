@@ -20,6 +20,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '17'
 
       - name: Build with Maven
@@ -36,6 +37,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '17'
 
       - name: Deploy to develop server
@@ -54,6 +56,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '17'
 
       - name: Deploy to homolog server
@@ -72,6 +75,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
+          distribution: 'adopt'
           java-version: '17'
 
       - name: Deploy to production server
