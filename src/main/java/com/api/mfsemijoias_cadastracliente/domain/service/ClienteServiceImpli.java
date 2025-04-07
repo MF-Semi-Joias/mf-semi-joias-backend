@@ -40,8 +40,9 @@ public class ClienteServiceImpli implements ClienteService {
     }
 
     @Override
-    public void buscarClientePorId(Long id) {
+    public Cliente buscarClientePorId(Long id) {
 
+        return null;
     }
 }
 
