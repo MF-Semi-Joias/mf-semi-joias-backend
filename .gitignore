@@ -1,5 +1,4 @@
 HELP.md
-.mvn
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -27,7 +26,6 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-/.idea/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
