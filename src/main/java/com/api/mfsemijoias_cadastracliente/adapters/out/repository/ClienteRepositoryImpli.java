@@ -1,8 +1,8 @@
 package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.api.mfsemijoias_cadastracliente.adapters.in.mappers.ClienteMapper;
 import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteService;
 import lombok.Data;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public class ClienteRepositoryImpli implements ClienteRepository {
 
     private final DynamoDBMapper dynamoDBMapper;
-    private final ClienteMapper clienteMapper;
+    private final ClienteService.ClienteMapper clienteMapper;
     private ClienteEntity clienteEntity;
 
 

@@ -1,6 +1,6 @@
 package com.api.mfsemijoias_cadastracliente.ports.in;
 
-public interface ClienyeValidation {
+public interface ClienteValidation {
 
     boolean isValidEmail(String email);
 
