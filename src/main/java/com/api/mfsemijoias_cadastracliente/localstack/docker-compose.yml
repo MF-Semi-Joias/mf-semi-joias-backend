@@ -7,6 +7,5 @@ services:
       - "4571:4571"
     environment:
       - SERVICES=dynamodb
-      - DEFAULT_REGION=sa-east-1
     volumes:
       - ./create_table.sh:/docker-entrypoint-initaws.d/create_table.sh

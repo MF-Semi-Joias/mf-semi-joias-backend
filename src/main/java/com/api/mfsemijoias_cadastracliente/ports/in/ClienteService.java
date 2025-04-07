@@ -20,12 +20,5 @@ public interface ClienteService {
 
     void buscarClientePorId(Long id);
 
-    @Mapper
-    interface ClienteMapper {
-        ClienteMapper INSTANCE = Mappers.getMapper(ClienteMapper.class);
 
-        ClienteEntity toEntity(Cliente cliente);
-
-        Cliente toDomain(ClienteEntity clienteEntity);
-    }
 }

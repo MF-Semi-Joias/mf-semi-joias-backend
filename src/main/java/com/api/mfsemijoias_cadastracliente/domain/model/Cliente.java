@@ -1,18 +1,14 @@
 package com.api.mfsemijoias_cadastracliente.domain.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
@@ -21,7 +17,7 @@ public class Cliente {
     private String nome;
     private String email;
     private String telefone;
-    private String CPF;
+    private String cpf;
     private String senha;
     private String usuario;
 }
