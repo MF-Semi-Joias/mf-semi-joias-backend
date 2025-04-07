@@ -18,7 +18,7 @@ public interface ClienteService {
 
     List<Cliente> listarClientes();
 
-    void buscarClientePorId(Long id);
+    Cliente buscarClientePorId(Long id);
 
     @Mapper
     interface ClienteMapper {
