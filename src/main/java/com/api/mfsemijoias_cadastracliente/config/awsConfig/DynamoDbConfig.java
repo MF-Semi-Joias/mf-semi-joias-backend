@@ -1,18 +1,27 @@
 package com.api.mfsemijoias_cadastracliente.config.awsConfig;
 
-
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("local")
 public class DynamoDbConfig {
+
+    @Value("${aws.dynamodb.endpoint}")
+    private String dynamoDbEndpoint;
+
+    @Value("${aws.dynamodb.region}")
+    private String region;
+
     @Bean
-    public DynamoDbClient dynamoDbClient() {
-        return DynamoDbClient.builder()
-                .region(Region.SA_EAST_1)
+    public AmazonDynamoDB amazonDynamoDB() {
+        return AmazonDynamoDBClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint, region))
                 .build();
     }
-
 }
