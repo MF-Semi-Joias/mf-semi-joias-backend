@@ -31,6 +31,7 @@ import lombok.NoArgsConstructor;
     @DynamoDBHashKey(attributeName = "id")
     private Long id;
 
+
 }
 
 
