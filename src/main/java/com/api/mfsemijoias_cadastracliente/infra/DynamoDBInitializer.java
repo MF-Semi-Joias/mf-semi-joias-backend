@@ -23,12 +23,22 @@ public class DynamoDBInitializer {
 
     @PostConstruct
     public void init() {
-        CreateTableRequest request = new CreateTableRequest()
-                .withTableName("clientes")
-                .withKeySchema(new KeySchemaElement("id", KeyType.HASH))
-                .withAttributeDefinitions(new AttributeDefinition("id", ScalarAttributeType.N))
-                .withBillingMode(BillingMode.PAY_PER_REQUEST);
+        String tableName = "clientes";
 
-        dynamoDB.createTable(request);
+        try {
+            // Verifica se a tabela já existe
+            dynamoDB.describeTable(tableName);
+            System.out.println("Tabela " + tableName + " já existe.");
+        } catch (ResourceNotFoundException e) {
+            // Cria a tabela caso não exista
+            CreateTableRequest request = new CreateTableRequest()
+                    .withTableName(tableName)
+                    .withKeySchema(new KeySchemaElement("id", KeyType.HASH))
+                    .withAttributeDefinitions(new AttributeDefinition("id", ScalarAttributeType.N))
+                    .withBillingMode(BillingMode.PAY_PER_REQUEST);
+
+            dynamoDB.createTable(request);
+            System.out.println("Tabela " + tableName + " criada com sucesso.");
+        }
     }
 }

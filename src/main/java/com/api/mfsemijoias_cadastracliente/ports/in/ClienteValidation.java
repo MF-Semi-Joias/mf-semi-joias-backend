@@ -1,17 +1,13 @@
 package com.api.mfsemijoias_cadastracliente.ports.in;
 
+import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
 public interface ClienteValidation {
 
-    boolean isValidEmail(String email);
+    boolean isClienteValido(Cliente cliente);
 
-    boolean isValidPhoneNumber(String phoneNumber);
-
-    boolean isValidCpf(String cpf);
-
-    boolean isValidName(String name);
-
-    boolean isValidPassword(String password);
-
-    boolean isValidUsername(String username);
 
 }

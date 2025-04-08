@@ -1,13 +1,10 @@
 package com.api.mfsemijoias_cadastracliente.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +17,32 @@ public class Cliente {
     private String cpf;
     private String senha;
     private String usuario;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
 }
