@@ -1,9 +1,15 @@
 package com.api.mfsemijoias_cadastracliente.domain.validation;
 
+import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteValidation;
+import lombok.Data;
+import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
-
+@Data
+@Getter
+@Component
 public class ClienteValidationImpli implements ClienteValidation {
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9+_.-]+@(.+)$");
@@ -13,33 +19,79 @@ public class ClienteValidationImpli implements ClienteValidation {
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     private static final Pattern USERNAME_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d]{6,}$");
 
-    @Override
     public boolean isValidEmail(String email) {
-        return EMAIL_PATTERN.matcher(email).matches();
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email não pode ser nulo ou vazio");
+        }
+        if (EMAIL_PATTERN.matcher(email).matches()) {
+            throw new IllegalArgumentException("Email inválido");
+        }
+        return true;
+
     }
 
-    @Override
     public boolean isValidPhoneNumber(String phoneNumber) {
-        return PHONE_PATTERN.matcher(phoneNumber).matches();
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            throw new IllegalArgumentException("Número de telefone não pode ser nulo ou vazio");
+        }
+         if (PHONE_PATTERN.matcher(phoneNumber).matches()) {
+            throw new IllegalArgumentException("Número de telefone inválido");
+        }
+        return true;
     }
 
-    @Override
     public boolean isValidCpf(String cpf) {
-        return CPF_PATTERN.matcher(cpf).matches();
+        if (cpf == null || cpf.isEmpty()) {
+            throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
+        }
+        if (CPF_PATTERN.matcher(cpf).matches()) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+        return true;
     }
 
-    @Override
     public boolean isValidName(String name) {
-        return NAME_PATTERN.matcher(name).matches();
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
+        }
+        if (NAME_PATTERN.matcher(name).matches()) {
+            throw new IllegalArgumentException("Nome inválido");
+        }
+        return true;
     }
 
-    @Override
     public boolean isValidPassword(String password) {
-        return PASSWORD_PATTERN.matcher(password).matches();
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Senha não pode ser nula ou vazia");
+        }
+        if (PASSWORD_PATTERN.matcher(password).matches()) {
+            throw new IllegalArgumentException("Senha inválida");
+        }
+        return true;
+    }
+
+    public boolean isValidUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("Usuário não pode ser nulo ou vazio");
+        }
+        if (USERNAME_PATTERN.matcher(username).matches()) {
+            throw new IllegalArgumentException("Usuário inválido");
+        }
+        return true;
     }
 
     @Override
-    public boolean isValidUsername(String username) {
-        return USERNAME_PATTERN.matcher(username).matches();
+    public boolean isClienteValido(Cliente cliente) {
+
+        if (isValidName(cliente.getNome())
+                && isValidEmail(cliente.getEmail())
+                && isValidPhoneNumber(cliente.getTelefone())
+                && isValidCpf(cliente.getCpf())
+                && isValidPassword(cliente.getSenha())
+                && isValidUsername(cliente.getUsuario())) {
+        }
+        throw new IllegalArgumentException("Cliente inválido");
     }
+
+
 }
