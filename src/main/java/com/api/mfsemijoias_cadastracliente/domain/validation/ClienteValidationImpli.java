@@ -54,9 +54,9 @@ public class ClienteValidationImpli implements ClienteValidation {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
         }
-        if (NAME_PATTERN.matcher(name).matches()) {
-            throw new IllegalArgumentException("Nome inválido");
-        }
+//        if (NAME_PATTERN.matcher(name).matches()) {
+//            throw new IllegalArgumentException("Nome inválido");
+//        }
         return true;
     }
 

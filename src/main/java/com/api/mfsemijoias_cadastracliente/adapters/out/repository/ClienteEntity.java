@@ -9,12 +9,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @DynamoDBTable(tableName = "clientes"
 ) public class ClienteEntity {
+
+    @DynamoDBHashKey(attributeName = "id")
+    private String id;
+
     @DynamoDBAttribute(attributeName = "nome")
     private String nome;
     @DynamoDBAttribute(attributeName = "email")
@@ -22,16 +28,67 @@ import lombok.NoArgsConstructor;
     @DynamoDBAttribute(attributeName = "telefone")
     private String telefone;
     @DynamoDBAttribute(attributeName = "cpf")
-    private String CPF;
+    private String cpf;
     @DynamoDBAttribute(attributeName = "senha")
     private String senha;
     @DynamoDBAttribute(attributeName = "usuario")
     private String usuario;
-    @DynamoDBAttribute(attributeName = "id")
-    @DynamoDBHashKey(attributeName = "id")
-    private Long id;
 
+    public String getId() {
+        return id;
+    }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setCPF(String CPF) {
+        this.cpf = cpf;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 }
 
 

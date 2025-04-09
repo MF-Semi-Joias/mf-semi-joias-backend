@@ -1,5 +1,6 @@
 package com.api.mfsemijoias_cadastracliente.config.awsConfig;
 
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -22,6 +23,7 @@ public class DynamoDbConfig {
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDbEndpoint, region))
+                .withCredentials(new ProfileCredentialsProvider("localstack"))
                 .build();
     }
 }

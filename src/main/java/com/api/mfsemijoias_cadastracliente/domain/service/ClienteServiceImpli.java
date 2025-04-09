@@ -25,7 +25,7 @@ public class ClienteServiceImpli implements ClienteService {
 
     @Override
     public void cadastrarCliente(Cliente cliente) {
-        clienteValidation.isClienteValido(cliente);
+//        clienteValidation.isClienteValido(cliente);
         clienteRepository.save(cliente);
 
 

@@ -6,11 +6,15 @@ import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 public class ClienteRepositoryImpli implements ClienteRepository {
 
     @Autowired
     private DynamoDBMapper dynamoDBMapper;
+
+    @Autowired
     private ClienteMapper clienteMapper;
 
 
@@ -22,7 +26,7 @@ public class ClienteRepositoryImpli implements ClienteRepository {
     }
 
     @Override
-    public Cliente findById(Long id) {
+    public Cliente findById(UUID id) {
         ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
         return ClienteMapper.INSTANCE.toDomain(clienteEntity);
     }
@@ -46,7 +50,7 @@ public class ClienteRepositoryImpli implements ClienteRepository {
     }
 
     @Override
-    public Cliente deleteById(Long id) {
+    public Cliente deleteById(UUID id) {
         ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
         if (clienteEntity != null) {
             dynamoDBMapper.delete(clienteEntity);
