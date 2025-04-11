@@ -11,57 +11,46 @@ import java.util.UUID;
 @Repository
 public class ClienteRepositoryImpli implements ClienteRepository {
 
-    @Autowired
-    private DynamoDBMapper dynamoDBMapper;
 
-    @Autowired
-    private ClienteMapper clienteMapper;
+    private final DynamoDBMapper dynamoDBMapper;
 
+    public ClienteRepositoryImpli(DynamoDBMapper dynamoDBMapper) {
+        this.dynamoDBMapper = dynamoDBMapper;
+    }
 
     @Override
-    public Cliente save(Cliente cliente) {
-        ClienteEntity clienteEntity = ClienteMapper.INSTANCE.toEntity(cliente);
+    public void save(ClienteEntity clienteEntity) {
         dynamoDBMapper.save(clienteEntity);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+
     }
 
     @Override
-    public Cliente findById(UUID id) {
-        ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void findById(UUID id) {
+
     }
 
     @Override
-    public Cliente findByEmail(String email) {
-        ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, email);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void findByEmail(String email) {
+
     }
 
     @Override
-    public Cliente findByCpf(String cpf) {
-        ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, cpf);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void findByCpf(String cpf) {
+
     }
 
     @Override
-    public Cliente findByNome(String nome) {
-        ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, nome);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void findByNome(String nome) {
+
     }
 
     @Override
-    public Cliente deleteById(UUID id) {
-        ClienteEntity clienteEntity = dynamoDBMapper.load(ClienteEntity.class, id);
-        if (clienteEntity != null) {
-            dynamoDBMapper.delete(clienteEntity);
-        }
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void deleteById(UUID id) {
+
     }
 
     @Override
-    public Cliente update(Cliente cliente) {
-        ClienteEntity clienteEntity = ClienteMapper.INSTANCE.toEntity(cliente);
-        dynamoDBMapper.save(clienteEntity);
-        return ClienteMapper.INSTANCE.toDomain(clienteEntity);
+    public void update(ClienteEntity clienteEntity) {
+
     }
 }

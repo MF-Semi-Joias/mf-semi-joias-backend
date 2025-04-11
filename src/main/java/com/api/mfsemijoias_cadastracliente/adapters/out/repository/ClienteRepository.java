@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public interface ClienteRepository  {
 
-    Cliente save(Cliente cliente);
-    Cliente findById(UUID id);
-    Cliente findByEmail(String email);
-    Cliente findByCpf(String cpf);
-    Cliente findByNome(String nome);
-    Cliente deleteById(UUID id);
-    Cliente update(Cliente cliente);
+    void save(ClienteEntity clienteEntity);
+    void findById(UUID id);
+    void findByEmail(String email);
+    void findByCpf(String cpf);
+    void findByNome(String nome);
+    void deleteById(UUID id);
+    void update(ClienteEntity clienteEntity);
 
 }

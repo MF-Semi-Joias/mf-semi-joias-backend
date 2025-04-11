@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -15,8 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@DynamoDBTable(tableName = "clientes"
-) public class ClienteEntity {
+@Component
+@DynamoDBTable(tableName = "clientes")
+public class ClienteEntity {
 
     @DynamoDBHashKey(attributeName = "id")
     private String id;
