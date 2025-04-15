@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
 
+
+
 public class ClienteDetailsService implements UserDetailsService {
 
     @Autowired
