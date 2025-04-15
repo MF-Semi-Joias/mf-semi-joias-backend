@@ -40,7 +40,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: feature/automated-pr
+          branch: ${{ github.ref_name }} # Identifica automaticamente a branch atual
           title: "Automated Pull Request"
           body: |
             Este PR foi criado automaticamente pelo workflow.
