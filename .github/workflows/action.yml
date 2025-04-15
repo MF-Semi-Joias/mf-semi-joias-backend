@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - '**' # Aciona em qualquer branch
-  pull_request:
-    branches:
-      - develop
 
 permissions:
   contents: write
@@ -46,13 +43,9 @@ jobs:
           git add .
           git commit -m "chore: alterações automatizadas" || echo "Nada para commitar"
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: ${{ github.ref_name }} # Usa a branch atual
-          title: "Automated Pull Request"
-          body: |
-            Este PR foi criado automaticamente pelo workflow.
-          commit-message: "feat: alterações automatizadas"
-          base: develop
-          always-create: true
+      - name: Push changes to develop
+        run: |
+          git fetch origin
+          git checkout develop
+          git merge ${{ github.ref_name }} --no-ff -m "Merge branch '${{ github.ref_name }}' into develop"
+          git push origin develop
