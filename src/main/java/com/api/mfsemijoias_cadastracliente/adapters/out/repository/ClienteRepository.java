@@ -7,6 +7,9 @@ import java.util.UUID;
 public interface ClienteRepository  {
 
     void save(ClienteEntity clienteEntity);
+    Cliente findByUser(String usuario);
+    void findBySenha(String senha);
+    void findAll();
     void findById(UUID id);
     void findByEmail(String email);
     void findByCpf(String cpf);

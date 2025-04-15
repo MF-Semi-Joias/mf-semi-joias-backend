@@ -2,8 +2,6 @@ package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
 import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -21,6 +19,22 @@ public class ClienteRepositoryImpli implements ClienteRepository {
     @Override
     public void save(ClienteEntity clienteEntity) {
         dynamoDBMapper.save(clienteEntity);
+
+    }
+
+    @Override
+    public Cliente findByUser(String usuario) {
+
+        return null;
+    }
+
+    @Override
+    public void findBySenha(String senha) {
+
+    }
+
+    @Override
+    public void findAll() {
 
     }
 
