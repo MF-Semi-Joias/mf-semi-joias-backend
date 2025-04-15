@@ -1,5 +1,10 @@
 package com.api.mfsemijoias_cadastracliente.adapters.in.gateway.controller;
 
+import com.api.mfsemijoias_cadastracliente.adapters.in.request.ClienteRequest;
+import com.api.mfsemijoias_cadastracliente.adapters.in.response.ClienteResponse;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRequestMapper;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteResponseMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteService;
@@ -11,16 +16,24 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    private final ClienteService clienteService;
 
-    public ClienteController(ClienteService clienteService) {
+    private final ClienteService clienteService;
+    private final ClienteRequestMapper clienteRequestMapper;
+    private final ClienteResponseMapper clienteResponseMapper;
+
+
+    public ClienteController(ClienteService clienteService, ClienteRequestMapper clienteRequestMapper, ClienteResponseMapper clienteResponseMapper) {
         this.clienteService = clienteService;
+        this.clienteRequestMapper = clienteRequestMapper;
+        this.clienteResponseMapper = clienteResponseMapper;
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<ClienteResponse> cadastrarCliente(@RequestBody ClienteRequest clienteRequest) {
+        Cliente cliente = clienteRequestMapper.toDomain(clienteRequest);
         clienteService.cadastrarCliente(cliente);
-        return ResponseEntity.ok(cliente);
+        ClienteResponse clienteResponse = clienteResponseMapper.toResponse(cliente);
+        return ResponseEntity.status(201).body(clienteResponse);
     }
 
     @PutMapping("/{id}")
