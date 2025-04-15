@@ -46,6 +46,6 @@ jobs:
       - name: Push changes to develop
         run: |
           git fetch origin
-          git checkout develop
-          git merge ${{ github.ref_name }} --no-ff -m "Merge branch '${{ github.ref_name }}' into develop"
-          git push origin develop
+           git checkout develop
+           git merge ${{ github.ref_name }} --no-ff --allow-unrelated-histories -m "Merge branch '${{ github.ref_name }}' into develop"
+           git push origin develop
