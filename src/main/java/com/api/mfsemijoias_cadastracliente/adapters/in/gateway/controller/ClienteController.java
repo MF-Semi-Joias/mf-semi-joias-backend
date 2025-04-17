@@ -11,6 +11,7 @@ import com.api.mfsemijoias_cadastracliente.ports.in.ClienteService;
 import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/clientes")
@@ -37,13 +38,13 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualizarCliente(@PathVariable UUID id, @RequestBody Cliente cliente) {
         clienteService.atualizarCliente(id, cliente);
         return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarCliente(@PathVariable Long id) {
+    public ResponseEntity<Void> deletarCliente(@PathVariable UUID id) {
         clienteService.deletarCliente(id);
         return ResponseEntity.noContent().build();
     }
@@ -55,8 +56,15 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Long id) {
+    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable UUID id) {
         Cliente cliente = clienteService.buscarClientePorId(id);
         return ResponseEntity.ok(cliente);
+    }
+
+    @GetMapping("/usuario/{usuario}")
+    public ResponseEntity<ClienteResponse> buscarClientePorUser(@PathVariable String usuario) {
+        Cliente cliente = clienteService.buscarClientePorUsuario(usuario);
+        ClienteResponse clienteResponse = clienteResponseMapper.toResponse(cliente);
+        return ResponseEntity.ok(clienteResponse);
     }
 }

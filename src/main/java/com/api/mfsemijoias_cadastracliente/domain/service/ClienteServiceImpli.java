@@ -10,6 +10,8 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @Data
@@ -20,7 +22,7 @@ public class ClienteServiceImpli implements ClienteService {
     private final ClienteRepository clienteRepository;
     private final ClienteMapper clienteMapper;
     private final ClienteValidation clienteValidation;
-    private  ClienteEntity clienteEntity;
+    private ClienteEntity clienteEntity;
 
 
     public ClienteServiceImpli(ClienteRepository clienteRepository, ClienteMapper clienteMapper, ClienteValidation clienteValidation) {
@@ -28,6 +30,7 @@ public class ClienteServiceImpli implements ClienteService {
         this.clienteMapper = clienteMapper;
         this.clienteValidation = clienteValidation;
     }
+
     @Override
     public void cadastrarCliente(Cliente cliente) {
         clienteValidation.clienteValido(cliente);
@@ -37,12 +40,12 @@ public class ClienteServiceImpli implements ClienteService {
     }
 
     @Override
-    public void atualizarCliente(Long id, Cliente cliente) {
+    public void atualizarCliente(UUID id, Cliente cliente) {
 
     }
 
     @Override
-    public void deletarCliente(Long id) {
+    public void deletarCliente(UUID id) {
 
     }
 
@@ -52,9 +55,20 @@ public class ClienteServiceImpli implements ClienteService {
     }
 
     @Override
-    public Cliente buscarClientePorId(Long id) {
+    public Cliente buscarClientePorId(UUID id) {
         return null;
     }
+
+    @Override
+    public Cliente buscarClientePorUsuario(String usuario) {
+        clienteEntity = clienteRepository.findByUser(usuario)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        return clienteMapper.toDomain(clienteEntity);
+
+    }
+
+
 }
+
 
 

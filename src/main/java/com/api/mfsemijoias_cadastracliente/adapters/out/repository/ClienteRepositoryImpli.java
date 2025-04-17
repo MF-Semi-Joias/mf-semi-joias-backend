@@ -1,9 +1,12 @@
 package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
-import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -23,10 +26,20 @@ public class ClienteRepositoryImpli implements ClienteRepository {
     }
 
     @Override
-    public Cliente findByUser(String usuario) {
+    public Optional<ClienteEntity> findByUser(String usuario) {
 
-        return null;
+        ClienteEntity clienteEntity = new ClienteEntity();
+        clienteEntity.setUsuario(usuario);
+        DynamoDBQueryExpression<ClienteEntity> queryExpression = new DynamoDBQueryExpression<ClienteEntity>()
+                .withHashKeyValues(clienteEntity)
+                .withConsistentRead(false);
+        List<ClienteEntity> cliente = dynamoDBMapper.query(ClienteEntity.class, queryExpression);
+        if (cliente.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(cliente.get(0));
     }
+
 
     @Override
     public void findBySenha(String senha) {
