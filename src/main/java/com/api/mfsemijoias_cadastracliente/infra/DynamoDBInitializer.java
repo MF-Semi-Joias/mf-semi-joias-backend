@@ -42,17 +42,23 @@ public class DynamoDBInitializer {
             CreateTableRequest request = new CreateTableRequest()
                     .withTableName(tableName)
                     .withKeySchema(new KeySchemaElement("id", KeyType.HASH)) // Chave primária
-                    .withAttributeDefinitions(new AttributeDefinition("id", ScalarAttributeType.S)) // Tipo String
-                    .withProvisionedThroughput(new ProvisionedThroughput(5L, 5L)); // Capacidade provisionada
+                    .withAttributeDefinitions(
+                            new AttributeDefinition("id", ScalarAttributeType.S), // Tipo String para a chave primária
+                            new AttributeDefinition("usuario", ScalarAttributeType.S) // Tipo String para o índice
+                    )
+                    .withGlobalSecondaryIndexes(
+                            new GlobalSecondaryIndex()
+                                    .withIndexName("usuario") // Nome do índice
+                                    .withKeySchema(new KeySchemaElement("usuario", KeyType.HASH)) // Chave de partição
+                                    .withProjection(new Projection().withProjectionType(ProjectionType.ALL)) // Projeção
+                                    .withProvisionedThroughput(new ProvisionedThroughput(5L, 5L)) // Capacidade provisionada
+                    )
+                    .withProvisionedThroughput(new ProvisionedThroughput(5L, 5L)); // Capacidade provisionada para a tabela
 
             dynamoDB.createTable(request);
             System.out.println("Tabela 'Cliente' criada com sucesso.");
         } else {
             System.out.println("Tabela 'Cliente' já existe.");
         }
-    }
-
-    public AmazonDynamoDB getDynamoDB() {
-        return dynamoDB;
     }
 }

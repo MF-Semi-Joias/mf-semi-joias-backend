@@ -1,13 +1,14 @@
-package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
+package com.api.mfsemijoias_cadastracliente.ports.in;
 
-import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
+import com.api.mfsemijoias_cadastracliente.adapters.out.entity.ClienteEntity;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ClienteRepository  {
 
     void save(ClienteEntity clienteEntity);
-    Cliente findByUser(String usuario);
+    Optional<ClienteEntity> findByUser(String usuario);
     void findBySenha(String senha);
     void findAll();
     void findById(UUID id);
