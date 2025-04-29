@@ -1,8 +1,9 @@
 package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.api.mfsemijoias_cadastracliente.adapters.out.entity.ClienteEntity;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

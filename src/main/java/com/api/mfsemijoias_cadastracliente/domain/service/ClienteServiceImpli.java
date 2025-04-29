@@ -1,7 +1,7 @@
 package com.api.mfsemijoias_cadastracliente.domain.service;
 
-import com.api.mfsemijoias_cadastracliente.adapters.out.repository.ClienteEntity;
-import com.api.mfsemijoias_cadastracliente.adapters.out.repository.ClienteRepository;
+import com.api.mfsemijoias_cadastracliente.adapters.out.entity.ClienteEntity;
+import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRepository;
 import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteService;
@@ -10,7 +10,6 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 

@@ -1,4 +1,4 @@
-package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
+package com.api.mfsemijoias_cadastracliente.adapters.out.entity;
 
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
@@ -10,8 +10,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
