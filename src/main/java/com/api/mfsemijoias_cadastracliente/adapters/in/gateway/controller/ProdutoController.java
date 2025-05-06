@@ -8,7 +8,10 @@ import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoRequestMapper
 import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoResponseMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/produtos")
@@ -17,13 +20,11 @@ public class ProdutoController {
     private final ProdutoService produtoService;
     private final ProdutoResponseMapper produtoResponseMapper;
     private final ProdutoRequestMapper produtoRequestMapper;
-    private final ProdutoRequest produtoRequest;
 
-    public ProdutoController(ProdutoService produtoService, ProdutoResponseMapper produtoResponseMapper, ProdutoRequestMapper produtoRequestMapper, ProdutoRequest produtoRequest) {
+    public ProdutoController(ProdutoService produtoService, ProdutoResponseMapper produtoResponseMapper, ProdutoRequestMapper produtoRequestMapper) {
         this.produtoService = produtoService;
         this.produtoResponseMapper = produtoResponseMapper;
         this.produtoRequestMapper = produtoRequestMapper;
-        this.produtoRequest = produtoRequest;
     }
 
 
