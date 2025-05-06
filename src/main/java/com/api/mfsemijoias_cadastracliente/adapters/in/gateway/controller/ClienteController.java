@@ -6,6 +6,7 @@ import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRequestMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteResponseMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteService;
 import com.api.mfsemijoias_cadastracliente.domain.model.Cliente;
@@ -28,7 +29,7 @@ public class ClienteController {
         this.clienteRequestMapper = clienteRequestMapper;
         this.clienteResponseMapper = clienteResponseMapper;
     }
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping
     public ResponseEntity<ClienteResponse> cadastrarCliente(@RequestBody ClienteRequest clienteRequest) {
         Cliente cliente = clienteRequestMapper.toDomain(clienteRequest);

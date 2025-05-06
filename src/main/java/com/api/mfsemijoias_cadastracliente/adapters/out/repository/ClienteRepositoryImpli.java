@@ -2,6 +2,7 @@ package com.api.mfsemijoias_cadastracliente.adapters.out.repository;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.api.mfsemijoias_cadastracliente.adapters.out.entity.ClienteEntity;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRepository;
 import org.springframework.stereotype.Repository;
@@ -48,9 +49,11 @@ public class ClienteRepositoryImpli implements ClienteRepository {
     }
 
     @Override
-    public void findAll() {
-
+    public List<ClienteEntity> findAll() {
+        return dynamoDBMapper.scan(ClienteEntity.class, new DynamoDBScanExpression());
     }
+
+
 
     @Override
     public void findById(UUID id) {

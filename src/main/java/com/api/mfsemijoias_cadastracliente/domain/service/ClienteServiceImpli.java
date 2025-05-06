@@ -50,7 +50,10 @@ public class ClienteServiceImpli implements ClienteService {
 
     @Override
     public List<Cliente> listarClientes() {
-        return List.of();
+        List<ClienteEntity> clienteEntities = clienteRepository.findAll();
+        return clienteEntities.stream()
+                .map(clienteMapper::toDomain)
+                .toList();
     }
 
     @Override
@@ -65,7 +68,9 @@ public class ClienteServiceImpli implements ClienteService {
         return clienteMapper.toDomain(clienteEntity);
 
     }
-
+    public boolean existeUsuarioCadastrado() {
+        return !clienteRepository.findAll().isEmpty();
+    }
 
 }
 
