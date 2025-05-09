@@ -8,10 +8,10 @@ import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoRequestMapper
 import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoResponseMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.produto.ProdutoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/produtos")
@@ -27,7 +27,6 @@ public class ProdutoController {
         this.produtoRequestMapper = produtoRequestMapper;
     }
 
-
     @PostMapping
     public ResponseEntity<ProdutoResponse> cadastrarProduto(@RequestBody ProdutoRequest produtoRequest) {
         Produto produto = produtoRequestMapper.toDomain(produtoRequest);
@@ -36,5 +35,61 @@ public class ProdutoController {
         return ResponseEntity.status(201).body(response);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarProduto(@PathVariable String id, @RequestBody ProdutoRequest produtoRequest) {
+        Produto produto = produtoRequestMapper.toDomain(produtoRequest);
+        produto.setId(id); // Certifique-se de que o modelo Produto possui o campo id
+        produtoService.atualizarProduto(produto);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarProduto(@PathVariable String id) {
+        produtoService.deletarProduto(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProdutoResponse>> listarTodosProdutos() {
+        List<Produto> produtos = produtoService.listarTodosProdutos();
+        List<ProdutoResponse> produtoResponses = produtos.stream()
+                .map(produtoResponseMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(produtoResponses);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoResponse> buscarProdutoPorId(@PathVariable String id) {
+        Produto produto = produtoService.buscarProdutoPorId(id);
+        ProdutoResponse produtoResponse = produtoResponseMapper.toResponse(produto);
+        return ResponseEntity.ok(produtoResponse);
+    }
+
+    @GetMapping("/nome/{nome}")
+    public ResponseEntity<List<ProdutoResponse>> buscarProdutosPorNome(@PathVariable String nome) {
+        List<Produto> produtos = produtoService.buscarProdutosPorNome(nome);
+        List<ProdutoResponse> produtoResponses = produtos.stream()
+                .map(produtoResponseMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(produtoResponses);
+    }
+
+    @GetMapping("/preco/{preco}")
+    public ResponseEntity<List<ProdutoResponse>> buscarProdutosPorPreco(@PathVariable double preco) {
+        List<Produto> produtos = produtoService.buscarProdutosPorPreco(preco);
+        List<ProdutoResponse> produtoResponses = produtos.stream()
+                .map(produtoResponseMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(produtoResponses);
+    }
+
+    @GetMapping("/estoque/{quantidadeEstoque}")
+    public ResponseEntity<List<ProdutoResponse>> buscarProdutosPorQuantidadeEstoque(@PathVariable int quantidadeEstoque) {
+        List<Produto> produtos = produtoService.buscarProdutosPorQuantidadeEstoque(quantidadeEstoque);
+        List<ProdutoResponse> produtoResponses = produtos.stream()
+                .map(produtoResponseMapper::toResponse)
+                .toList();
+        return ResponseEntity.ok(produtoResponses);
+    }
 
 }
