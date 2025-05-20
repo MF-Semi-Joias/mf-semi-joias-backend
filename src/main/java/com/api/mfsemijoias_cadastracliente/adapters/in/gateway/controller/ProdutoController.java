@@ -30,6 +30,9 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<ProdutoResponse> cadastrarProduto(@RequestBody ProdutoRequest produtoRequest) {
         Produto produto = produtoRequestMapper.toDomain(produtoRequest);
+        if (produto.getId() == null || produto.getId().isEmpty()) {
+            produto.setId(UUID.randomUUID().toString());        }
+
         produtoService.cadastrarProduto(produto);
         ProdutoResponse response = produtoResponseMapper.toResponse(produto);
         return ResponseEntity.status(201).body(response);
