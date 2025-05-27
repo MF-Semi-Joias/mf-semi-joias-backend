@@ -14,13 +14,13 @@ public class Produto {
     private String nome;
     private String descricao;
     private String categoria;
-    private String preco;
+    private Double preco;
     private String imagemUrl;
-    private String quantidadeEstoque;
+    private Integer quantidadeEstoque;
     private String dataCadastro;
     private String dataAtualizacao;
 
-    public Produto(String id, String nome, String descricao, String categoria, String preco, String imagemUrl, String quantidadeEstoque, String dataCadastro, String dataAtualizacao) {
+    public Produto(String id, String nome, String descricao, String categoria, Double preco, String imagemUrl, Integer quantidadeEstoque, String dataCadastro, String dataAtualizacao) {
         this.id  = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -31,7 +31,4 @@ public class Produto {
         this.dataCadastro = dataCadastro;
         this.dataAtualizacao = dataAtualizacao;
     }
-
-
-
 }
