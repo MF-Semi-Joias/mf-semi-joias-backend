@@ -2,7 +2,6 @@ package com.api.mfsemijoias_cadastracliente.adapters.in.gateway.controller;
 
 import com.api.mfsemijoias_cadastracliente.adapters.in.request.ClienteRequest;
 import com.api.mfsemijoias_cadastracliente.adapters.in.response.ClienteResponse;
-import com.api.mfsemijoias_cadastracliente.ports.in.ClienteMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteRequestMapper;
 import com.api.mfsemijoias_cadastracliente.ports.in.ClienteResponseMapper;
 import org.springframework.http.ResponseEntity;
