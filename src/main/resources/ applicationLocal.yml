@@ -1,8 +1,0 @@
-aws:
-  dynamodb:
-    endpoint: http://localhost:4566
-    region: -east-1
-
-    spring:
-      profiles:
-        active: local
